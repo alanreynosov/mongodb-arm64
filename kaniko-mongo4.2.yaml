@@ -8,7 +8,7 @@ spec:
       image: gcr.io/kaniko-project/executor:latest
       args:
         - "--context=Dockerfile"
-        - "--context=git@github.com:alanreynosov/mongodb-arm64.git"
+        - "--context=git://github.com/alanreynosov/mongodb-arm64.git"
         - "--destination=alanreynoso/mongo4.2-arm64v7"
       volumeMounts:
         - name: kaniko-secret
