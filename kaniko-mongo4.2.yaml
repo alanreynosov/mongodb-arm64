@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko
+spec:
+  containers:
+    - name: kaniko
+      image: gcr.io/kaniko-project/executor:latest
+      args:
+        - "--context=git@github.com:alanreynosov/mongodb-arm64.git"
+        - "--destination=alanreynoso/mongo4.2-arm64v7"
+      volumeMounts:
+        - name: kaniko-secret
+          mountPath: /kaniko/.docker
+
+      env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /secret/kaniko-secret.json
+  restartPolicy: Never
+  volumes:
+    - name: kaniko-secret
+      secret:
+        secretName: regcred
+        items:  
+        - key: .dockerconfigjson
+          path: config.json
