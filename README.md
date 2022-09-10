@@ -1,3 +1,3 @@
 # mongodb
 
-Build dockerless container for MongoDB Server 4.2 with Kaniko on Kubernetes
+Build Docker-less container images for MongoDB Server4.2 with Kaniko for Kubernetes
