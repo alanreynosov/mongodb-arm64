@@ -37,20 +37,6 @@ case "$dpkgArch" in
 		fi
 		;;
 
-	arm64) # https://github.com/docker-library/mongo/issues/485#issuecomment-970864306
-		# https://en.wikichip.org/wiki/arm/armv8#ARMv8_Extensions_and_Processor_Features
-		# http://javathunderx.blogspot.com/2018/11/cheat-sheet-for-cpuinfo-features-on.html
-		if ! grep -qE '^Features.* (fphp|dcpop|sha3|sm3|sm4|asimddp|sha512|sve)( .*|$)' /proc/cpuinfo; then
-			{
-				echo
-				echo 'WARNING: MongoDB 5.0+ requires ARMv8.2-A or higher, and your current system does not appear to implement any of the common features for that!'
-				echo '  see https://jira.mongodb.org/browse/SERVER-55178'
-				echo '  see also https://en.wikichip.org/wiki/arm/armv8#ARMv8_Extensions_and_Processor_Features'
-				echo '  see also https://github.com/docker-library/mongo/issues/485#issuecomment-970864306'
-				echo
-			} >&2
-		fi
-		;;
 esac
 
 # you should use numactl to start your mongod instances, including the config servers, mongos instances, and any clients.
