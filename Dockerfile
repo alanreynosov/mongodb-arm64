@@ -10,4 +10,4 @@ RUN apt-get update
 RUN apt-get install mongodb-org -y
 RUN mkdir -p /data/db
 EXPOSE 27017
-ENTRYPOINT ["/usr/bin/mongod"]
+ENTRYPOINT ["/usr/bin/mongod","--bind_ip_all"]
