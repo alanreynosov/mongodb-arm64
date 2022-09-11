@@ -15,6 +15,7 @@ ENV MONGO_VERSION=4.0.12
 ENV set -x 	&& export DEBIAN_FRONTEND=noninteractive 	&& apt-get update 	&& apt-get install -y 		${MONGO_PACKAGE}=$MONGO_VERSION 		${MONGO_PACKAGE}-server=$MONGO_VERSION 		${MONGO_PACKAGE}-shell=$MONGO_VERSION 		${MONGO_PACKAGE}-mongos=$MONGO_VERSION 		${MONGO_PACKAGE}-tools=$MONGO_VERSION 	&& rm -rf /var/lib/apt/lists/* 	&& rm -rf /var/lib/mongodb 	&& mv /etc/mongod.conf /etc/mongod.conf.orig
 VOLUME [/data/db /data/configdb]
 ENV HOME=/data/db
+COPY savedAptMark /usr/local/bin
 ENTRYPOINT ["docker-entrypoint.sh"]
 EXPOSE 27017
 CMD ["mongod"]
