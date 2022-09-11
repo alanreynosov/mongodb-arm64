@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM busybox:latest
 RUN apt-get update && apt install wget gnupg2 -y
 RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add -
 RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.2.list
